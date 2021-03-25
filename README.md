@@ -21,8 +21,8 @@ Put the whole react repository of the project to each folder except the folder <
 ## Use yarn to create node project and add dependencies (in a disk space friendly way)
 
 - Install `yarn` via `npm i -g yarn`, as yarn doesn't come bundled with node.
-- Install a cloned node project from github via command `yarn`.
-- To create react-app, use `yarn create react-app my-app` inside each part folders.
+- Install a cloned node project from github via command `yarn` instead of `npm install`.
+- To create a react app, use `yarn create react-app my-app` inside each part folders.
 - To add production dependency, use `yarn add dep1 dep2` instead of `npm i dep1 dep2`.
 - To add development dependency, use `yarn add -D dep1 dep2` instead of `npm i -D dep1 dep2`.
 
