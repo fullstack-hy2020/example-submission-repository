@@ -22,9 +22,12 @@ Put the whole react repository of the project to each folder except the folder <
 
 - Clone this repo and update the remote for your own github's repo via command line using `git remote set-url origin <my-full-stack-course-github-repo-url>`.
 
-## Use yarn to create node project and add dependencies (in a disk space friendly way)
+## Installing yarn
 
 - Install `yarn` via `npm i -g yarn`, as yarn doesn't come bundled with node.
+
+## Using yarn (in a disk space friendly way)
+
 - Install a cloned node project from github via command `yarn` instead of `npm install`.
 - To create a react app, use `yarn create react-app my-app` inside respective part folders.
 - To add production dependency, use `yarn add dep1 dep2` instead of `npm i dep1 dep2`.
