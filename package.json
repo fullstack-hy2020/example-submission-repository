@@ -1,0 +1,6 @@
+{
+  "name": "my-workspaces-powered-project",
+  "workspaces": [
+    "*"
+  ]
+}
