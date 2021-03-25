@@ -1,6 +1,7 @@
 {
-  "name": "my-workspaces-powered-project",
+  "name": "fullstack-workspace-bryan-lisle",
+  "private": "true",
   "workspaces": [
-    "*"
+    "**"
   ]
 }
