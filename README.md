@@ -18,6 +18,10 @@ part2
 
 Put the whole react repository of the project to each folder except the folder <i>node_modules</i>
 
+## Get started
+
+- Clone this repo and update the remote for your own github's repo via command line using `git remote set-url origin <my-full-stack-course-github-repo-url>`.
+
 ## Use yarn to create node project and add dependencies (in a disk space friendly way)
 
 - Install `yarn` via `npm i -g yarn`, as yarn doesn't come bundled with node.
