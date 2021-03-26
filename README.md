@@ -34,4 +34,4 @@ Put the whole react repository of the project to each folder except the folder <
 - To add development dependency, use `yarn add -D dep1 dep2` instead of `npm i -D dep1 dep2`.
 
 **Note:** You must use `yarn` instead of `npm` to utilise the dependency sharing between your projects in any nested folder. In case you accidentaly used `npm i` or `npm i dep1` or
-`npm i -D dep2`, simply run rm -rf node_modules and use `yarn` or `yarn add dep1` or `yarn add -D dep2` respectively.
+`npm i -D dep2`, simply run `rm -rf node_modules` in that folder only and then use `yarn` or `yarn add dep1` or `yarn add -D dep2` respectively to fix.
