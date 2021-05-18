@@ -28,16 +28,23 @@ const Statistics = ({good, neutral, bad}) => {
     const all = getAll()
     return all === 0 ? 0 : (good) / getAll()
   }
-  return (
-    <div>
-      good {good}<br />
-      neutral {neutral}<br />
-      bad {bad}<br />
-      all {getAll()}<br />
-      average {getAverage()}<br />
-      positive {getPositive()} %<br />
-    </div>
-  )
+  if (getAll() === 0) {
+    return (<div>No feedback given</div>)
+  } else {
+    return (
+      <div>
+
+        good {good}<br/>
+        neutral {neutral}<br/>
+        bad {bad}<br/>
+        all {getAll()}<br/>
+        average {getAverage()}<br/>
+        positive {getPositive()} %<br/>
+      </div>
+    )
+  }
 }
+
+
 
 export default App
