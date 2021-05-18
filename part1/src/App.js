@@ -31,22 +31,25 @@ const Statistics = ({good, neutral, bad}) => {
     return (<div>No feedback given</div>)
   } else {
     return (
-      <div>
-        <Statistic text="good" value={good} />
-        <Statistic text="neutral" value={neutral} />
-        <Statistic text="bad" value={bad} />
-        <Statistic text="all" value={getAll()} />
-        <Statistic text="average" value={getAverage()} />
-        <Statistic text="positive" value={getPositive()} suffix={" %"} />
-      </div>
+      <table>
+        <tbody>
+          <Statistic text="good" value={good} />
+          <Statistic text="neutral" value={neutral} />
+          <Statistic text="bad" value={bad} />
+          <Statistic text="all" value={getAll()} />
+          <Statistic text="average" value={getAverage()} />
+          <Statistic text="positive" value={getPositive()} suffix={" %"} />
+        </tbody>
+      </table>
     )
   }
 }
 
 const Statistic = ({ text, value, suffix}) =>
-  <div>
-    {text} {value}{suffix}
-  </div>
+  <tr>
+    <td>{text}</td>
+    <td>{value}{suffix}</td>
+  </tr>
 
 
 
