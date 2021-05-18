@@ -32,17 +32,21 @@ const Statistics = ({good, neutral, bad}) => {
   } else {
     return (
       <div>
-
-        good {good}<br/>
-        neutral {neutral}<br/>
-        bad {bad}<br/>
-        all {getAll()}<br/>
-        average {getAverage()}<br/>
-        positive {getPositive()} %<br/>
+        <Statistic text="good" value={good} />
+        <Statistic text="neutral" value={neutral} />
+        <Statistic text="bad" value={bad} />
+        <Statistic text="all" value={getAll()} />
+        <Statistic text="average" value={getAverage()} />
+        <Statistic text="positive" value={getPositive()} suffix={" %"} />
       </div>
     )
   }
 }
+
+const Statistic = ({ text, value, suffix}) =>
+  <div>
+    {text} {value}{suffix}
+  </div>
 
 
 
