@@ -20,13 +20,31 @@ const App = () => {
     copy[selected] += 1
     setPoints(copy)
   }
+  const suffix = (voteCount) => voteCount < 2 ? "" : "s"
 
   return (
     <div>
       {anecdotes[selected]}<br/>
-      has {points[selected]} votes<br/>
+      has {points[selected]} vote{suffix(points[selected])}<br/>
       <button onClick={() => updateVote(selected)}>vote</button>
       <button onClick={() => setSelected(getRandomInt(6))}>next anecdote</button>
+      <MostVotes anecdotes={anecdotes} points={points}></MostVotes>
+    </div>
+  )
+}
+
+const MostVotes = ({ anecdotes, points }) => {
+  const maxIndex = points.reduce((prev, next, index) => {
+      return prev[0] < next ? [next, index] : prev
+    }, [0, 0])[1]
+  const suffix = () => points[maxIndex] < 2 ? "" : "s"
+  return (
+    <div>
+      <h1>Anecdote with most votes</h1>
+      <div>
+        {anecdotes[maxIndex]}<br/>
+        has {points[maxIndex]} vote{suffix()}
+      </div>
     </div>
   )
 }
