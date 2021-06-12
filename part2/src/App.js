@@ -1,4 +1,5 @@
 import React from 'react'
+import Course from './components/Course'
 
 const App = () => {
   const course = {
@@ -22,7 +23,6 @@ const App = () => {
       }
     ]
   }
-
   return <Course course={course} />
 }
 
