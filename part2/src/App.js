@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Country from "./components/Country";
+import Weather from "./components/Weather";
 
 const App = () => {
   const [countries, setCountries] = useState([])
@@ -19,7 +20,10 @@ const App = () => {
     } else if (filteredResult.length === 1) {
       const country = filteredResult[0]
       return (
-        <Country country={country}/>
+        <div>
+          <Country country={country}/>
+          <Weather country={country}/>
+        </div>
       )
     } else {
       return (filteredResult.map(country => <div key={country.name}>{country.name}<button onClick={() => setQuery(country.name)}>show</button></div>))
