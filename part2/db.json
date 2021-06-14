@@ -19,48 +19,6 @@
       "name": "Mary Poppendieck",
       "number": "39-23-6423122",
       "id": 4
-    },
-    {
-      "name": "fjigaewigjeawi",
-      "number": "12312512-412",
-      "id": 5
-    },
-    {
-      "name": "fewagwat2",
-      "number": "12312-12",
-      "id": 6
-    },
-    {
-      "name": "vdsavewagew",
-      "number": "123123-321312-312",
-      "id": 7
-    },
-    {
-      "name": "beshbreanmtrse",
-      "number": "t3241-412",
-      "id": 8
-    },
-    {
-      "name": "421rt2",
-      "number": "412321-412421",
-      "id": 9
-    },
-    {
-      "returnedPerson ": "> setPersons(persons.concat(returnedPerson))",
-      "id": 10
-    },
-    {
-      "id": 11
-    },
-    {
-      "name": "312312312",
-      "number": "123124-124-124-12",
-      "id": 12
-    },
-    {
-      "name": "hello world",
-      "number": "123-213-21-12421",
-      "id": 13
     }
   ]
 }
