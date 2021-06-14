@@ -8,6 +8,7 @@ import './index.css'
 const App = () => {
   const [persons, setPersons] = useState([])
   const [infoMessage, setInfoMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
   const Notification = ({ infoMessage }) => {
     if (infoMessage === null) {
       return null
@@ -16,6 +17,17 @@ const App = () => {
     return (
       <div className="info">
         {infoMessage}
+      </div>
+    )
+  }
+  const ErrorNotification = ({ errorMessage }) => {
+    if (errorMessage === null) {
+      return null
+    }
+
+    return (
+      <div className="error">
+        {errorMessage}
       </div>
     )
   }
@@ -30,6 +42,7 @@ const App = () => {
 
     <div>
       <Notification infoMessage={infoMessage}></Notification>
+      <ErrorNotification errorMessage={errorMessage}></ErrorNotification>
       <h2>Phonebook</h2>
       <Filter query={searchQuery} setSearchQuery={setSearchQuery}/>
 
@@ -37,7 +50,7 @@ const App = () => {
       <PersonForm persons={persons} setPersons={setPersons} setInfoMessage={setInfoMessage}/>
 
       <h3>Numbers</h3>
-      <Persons persons={persons} searchQuery={searchQuery} setPersons={setPersons}/>
+      <Persons persons={persons} searchQuery={searchQuery} setPersons={setPersons} setErrorMessage={setErrorMessage}/>
     </div>
   )
 }
