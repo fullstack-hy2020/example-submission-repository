@@ -55,8 +55,28 @@ app.delete('/api/persons/:id', (request, response) => {
 })
 
 app.post('/api/persons/', (request, response) => {
+  if(!request.body.name) {
+    return response.status(422).json({
+      error: "name key not specified"
+    })
+  }
+  if(!request.body.number) {
+    return response.status(422).json({
+      error: "number key not specified"
+    })
+  }
   const name = request.body.name
   const number = request.body.number
+  if(persons.find(p => p.name === name)) {
+    response.status(400).json({
+      error: 'name must be unique'
+    })
+  }
+  if(persons.find(p => p.number === number)) {
+    response.status(400).json({
+      error: 'number must be specified'
+    })
+  }
   const person = {
     id: Math.floor(Math.random() * 1000000),
     name: name,
