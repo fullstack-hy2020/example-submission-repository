@@ -26,7 +26,7 @@ app.get('/info', (request, response) => {
 app.get('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id)
   const person = persons.find(person => person.id === id)
-  if(person) {
+  if (person) {
     response.json(person)
   } else {
     response.status(404).end()
@@ -40,33 +40,40 @@ app.delete('/api/persons/:id', (request, response) => {
 })
 
 app.post('/api/persons/', (request, response) => {
-  if(!request.body.name) {
+  if (!request.body.name) {
     return response.status(422).json({
       error: "name key not specified"
     })
   }
-  if(!request.body.number) {
+  if (!request.body.number) {
     return response.status(422).json({
       error: "number key not specified"
     })
   }
   const name = request.body.name
   const number = request.body.number
-  if(persons.find(p => p.name === name)) {
-    response.status(400).json({
-      error: 'name must be unique'
-    })
-  }
-  if(persons.find(p => p.number === number)) {
-    response.status(400).json({
-      error: 'number must be specified'
-    })
-  }
-  const person = {
+  Person.find({}).then( persons => {
+    if(persons.find(p => p.name === name)) {
+      response.status(400).json({
+        error: 'name must be unique'
+      })
+    }
+    if(persons.find(p => p.number === number)) {
+      response.status(400).json({
+        error: 'number must be specified'
+      })
+    }
+  })
+
+  const person = new Person({
     id: Math.floor(Math.random() * 1000000),
     name: name,
     number: number,
-  }
+  })
+  person.save().then(result => {
+    console.log("saved")
+  })
+
   response.json(person)
 })
 
