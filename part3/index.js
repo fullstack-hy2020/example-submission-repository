@@ -56,28 +56,18 @@ app.post('/api/persons/', (request, response, next) => {
   }
   const name = request.body.name
   const number = request.body.number
-  Person.find({}).then( persons => {
-    if(persons.find(p => p.name === name)) {
-      response.status(400).json({
-        error: 'name must be unique'
-      })
-    }
-    if(persons.find(p => p.number === number)) {
-      response.status(400).json({
-        error: 'number must be specified'
-      })
-    }
-  })
 
   const person = new Person({
     name: name,
     number: number,
   })
-  person.save().then(result => {
-    console.log("saved")
-  })
-
-  response.json(person)
+  person.save()
+    .then(result => {
+      response.json(person)
+    })
+    .catch(error => {
+      next(error)
+    })
 })
 
 app.put('/api/persons/:id', (request, response, next) => {
@@ -88,25 +78,35 @@ app.put('/api/persons/:id', (request, response, next) => {
     number: number,
   }
 
-  Person.findByIdAndUpdate(request.params.id, person, { new: true })
+  Person.findByIdAndUpdate(request.params.id, person, {new: true})
     .then(updatePerson => {
       response.json(updatePerson)
     })
     .catch(error => next(error))
 })
 
+const unknownEndpoint = (request, response) => {
+  response.status(404).send({error: 'unknown endpoint'})
+}
+
+app.use(unknownEndpoint)
 
 const errorHandler = (error, request, response, next) => {
+  console.log("jgiowjigj3iojg32ioj")
   console.error(error.message)
+  console.error(error.name)
 
-  if (error.name === 'CastError') {
-    return response.status(400).send({ error: 'malformatted id' })
+  if (error.name === 'CastError' && error.kind === 'ObjectId') {
+    return response.status(400).send({error: 'malformatted id'})
+  } else if (error.name === 'ValidationError') {
+    return response.status(400).json({error: error.message})
   }
 
   next(error)
 }
 
 app.use(errorHandler)
+
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {

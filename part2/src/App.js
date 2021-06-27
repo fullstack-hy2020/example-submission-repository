@@ -47,7 +47,7 @@ const App = () => {
       <Filter query={searchQuery} setSearchQuery={setSearchQuery}/>
 
       <h3>Add a new</h3>
-      <PersonForm persons={persons} setPersons={setPersons} setInfoMessage={setInfoMessage}/>
+      <PersonForm persons={persons} setPersons={setPersons} setInfoMessage={setInfoMessage} setErrorMessage={setErrorMessage } />
 
       <h3>Numbers</h3>
       <Persons persons={persons} searchQuery={searchQuery} setPersons={setPersons} setErrorMessage={setErrorMessage}/>

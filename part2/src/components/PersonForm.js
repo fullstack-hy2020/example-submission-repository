@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import PersonService from "../services/persons";
 
-const PersonForm = ({ persons, setPersons, setInfoMessage }) => {
+const PersonForm = ({ persons, setPersons, setInfoMessage, setErrorMessage }) => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
 
@@ -35,13 +35,20 @@ const PersonForm = ({ persons, setPersons, setInfoMessage }) => {
         name: newName,
         number: newNumber
       }
-      PersonService.create(newPerson).then(returnedPerson =>
-        setPersons(persons.concat(returnedPerson))
-      )
-      setInfoMessage(`Added ${newName}`)
-      setTimeout(() => {
-        setInfoMessage(null)
-      }, 5000)
+      PersonService.create(newPerson)
+        .then(returnedPerson => {
+          setPersons(persons.concat(returnedPerson))
+          setInfoMessage(`Added ${newName}`)
+          setTimeout(() => {
+            setInfoMessage(null)
+          }, 5000)
+        })
+        .catch(error => {
+          setErrorMessage(`${error.response.data.error}`)
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 5000)
+        })
     }
   }
 
