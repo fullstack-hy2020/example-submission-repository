@@ -19,10 +19,6 @@ app.get('/api/persons', (request, response) => {
   })
 })
 
-app.get('/info', (request, response) => {
-  response.send(`<div>Phonebook has info for ${persons.length} people</div><p>${new Date()}</p>`)
-})
-
 app.get('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id)
   const person = persons.find(person => person.id === id)
@@ -41,7 +37,7 @@ app.delete('/api/persons/:id', (request, response, next) => {
     .catch(error => next(error))
 })
 
-app.post('/api/persons/', (request, response) => {
+app.post('/api/persons/', (request, response, next) => {
   if (!request.body.name) {
     return response.status(422).json({
       error: "name key not specified"
@@ -78,6 +74,33 @@ app.post('/api/persons/', (request, response) => {
   response.json(person)
 })
 
+app.put('/api/persons/:id', (request, response, next) => {
+  const name = request.body.name
+  const number = request.body.number
+  const person = {
+    name: name,
+    number: number,
+  }
+
+  Person.findByIdAndUpdate(request.params.id, person, { new: true })
+    .then(updatePerson => {
+      response.json(updatePerson)
+    })
+    .catch(error => next(error))
+})
+
+
+const errorHandler = (error, request, response, next) => {
+  console.error(error.message)
+
+  if (error.name === 'CastError') {
+    return response.status(400).send({ error: 'malformatted id' })
+  }
+
+  next(error)
+}
+
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
