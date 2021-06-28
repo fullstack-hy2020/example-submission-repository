@@ -2,7 +2,7 @@ const express = require('express')
 const morgan = require('morgan')
 const app = express()
 const cors = require('cors')
-morgan.token('body', (req, res) => JSON.stringify(req.body));
+morgan.token('body', (req) => JSON.stringify(req.body))
 require('dotenv').config()
 
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
@@ -37,7 +37,7 @@ app.get('/api/persons/:id', (request, response, next) => {
 
 app.delete('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndRemove(request.params.id)
-    .then(result => {
+    .then(() => {
       response.status(204).end()
     })
     .catch(error => next(error))
@@ -46,12 +46,12 @@ app.delete('/api/persons/:id', (request, response, next) => {
 app.post('/api/persons/', (request, response, next) => {
   if (!request.body.name) {
     return response.status(422).json({
-      error: "name key not specified"
+      error: 'name key not specified'
     })
   }
   if (!request.body.number) {
     return response.status(422).json({
-      error: "number key not specified"
+      error: 'number key not specified'
     })
   }
   const name = request.body.name
@@ -62,7 +62,7 @@ app.post('/api/persons/', (request, response, next) => {
     number: number,
   })
   person.save()
-    .then(result => {
+    .then(() => {
       response.json(person)
     })
     .catch(error => {
@@ -78,7 +78,7 @@ app.put('/api/persons/:id', (request, response, next) => {
     number: number,
   }
 
-  Person.findByIdAndUpdate(request.params.id, person, {new: true})
+  Person.findByIdAndUpdate(request.params.id, person, { new: true })
     .then(updatePerson => {
       response.json(updatePerson)
     })
@@ -86,20 +86,18 @@ app.put('/api/persons/:id', (request, response, next) => {
 })
 
 const unknownEndpoint = (request, response) => {
-  response.status(404).send({error: 'unknown endpoint'})
+  response.status(404).send({ error: 'unknown endpoint' })
 }
 
 app.use(unknownEndpoint)
 
 const errorHandler = (error, request, response, next) => {
-  console.log("jgiowjigj3iojg32ioj")
   console.error(error.message)
-  console.error(error.name)
 
   if (error.name === 'CastError' && error.kind === 'ObjectId') {
-    return response.status(400).send({error: 'malformatted id'})
+    return response.status(400).send({ error: 'malformatted id' })
   } else if (error.name === 'ValidationError') {
-    return response.status(400).json({error: error.message})
+    return response.status(400).json({ error: error.message })
   }
 
   next(error)

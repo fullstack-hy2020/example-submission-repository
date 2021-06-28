@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 require('dotenv').config()
-const uniqueValidator = require('mongoose-unique-validator');
+const uniqueValidator = require('mongoose-unique-validator')
 
 const mongodb_uri = process.env.MONGODB_URI
 
 console.log('connecting to', mongodb_uri)
 
 mongoose.connect(mongodb_uri, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
-  .then(result => {
+  .then(() => {
     console.log('connected to MongoDB')
   })
   .catch((error) => {
