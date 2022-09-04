@@ -17,13 +17,14 @@ const App = () => {
   const handleBad = () => {
     setBad(bad + 1);
   };
+
   return (
     <div>
       <h1>give feedback</h1>
       <button onClick={handleGood}>Good</button>
       <button onClick={handleNeutral}>Neutral</button>
       <button onClick={handleBad}>Bad</button>
-
+      {/* Passing the states as an object of an array */}
       <Statistics states={[good, neutral, bad]} />
     </div>
   );

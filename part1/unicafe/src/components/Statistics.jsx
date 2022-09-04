@@ -1,6 +1,8 @@
 import React from "react";
 import StatisticLine from "./StatisticLine";
+
 const Statistics = ({ states }) => {
+  // Destructuring the state object
   const [good, neutral, bad] = states;
   const sum = good + neutral + bad;
   const avg = sum / 3;
