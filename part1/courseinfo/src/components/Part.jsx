@@ -1,12 +1,10 @@
 import React from "react";
 
 function Part(props) {
-  // Destructuring props
-  const { part, exercises } = props;
   return (
-    <div>
-      {part}:{exercises}
-    </div>
+    <p>
+      {props.name} {props.exercises}
+    </p>
   );
 }
 

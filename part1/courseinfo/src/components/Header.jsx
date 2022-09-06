@@ -1,8 +1,7 @@
 import React from "react";
 
-function Header() {
-  const course = "Half Stack application development";
-  return <div>{course}</div>;
+function Header(props) {
+  return <div>{props.name}</div>;
 }
 
 export default Header;
