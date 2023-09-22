@@ -13,7 +13,7 @@ const Statistics = (props) => {
       </>
     );
   }
-\  return (
+  return (
     <>
       <h1>statistics</h1>
       <div>good {good}</div>
